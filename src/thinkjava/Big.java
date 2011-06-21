@@ -11,7 +11,21 @@ import java.math.BigInteger;
  * @author karlo
  */
 public class Big {
-    public static void printTable30(){
+    public static BigInteger pow (int x, int n) {
+        if (n==0) return BigInteger.valueOf(1);
+        // find x to the n/2 recursively
+        BigInteger t = pow (x, n/2);
+        // if n is even, the result is t squared
+        // if n is odd, the result is t squared times x
+        if (n%2 == 0) {
+            return t.multiply(t);
+        } else {
+            BigInteger bigX = BigInteger.valueOf(x);
+            return t.multiply(t).multiply(bigX);
+}
+}
+
+    public static void printFactorialTable30(){
         for (int i = 0;i<=30;i++){
             System.out.format("%d\t%d\n",i,factorial(i));
         }
@@ -36,6 +50,7 @@ public class Big {
     }
     public static void main(String[] args){
 //        System.out.println(factorial(5));
-        printTable30();
+//        printFactorialTable30();
+        System.out.println(pow(20000000,1000));
     }
 }
