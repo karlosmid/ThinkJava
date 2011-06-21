@@ -38,9 +38,10 @@ public class CapitanCrunch {
     }
 
     public static void main(String [] args){
-        for (int i = 1;i<=5200;i++){
-            System.out.format("%d %s",i,encode(encode("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ",-i),i).equalsIgnoreCase("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
-        }
+//        for (int i = 1;i<=5200;i++){
+//            System.out.format("%d %s",i,encode(encode("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ",-i),i).equalsIgnoreCase("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+//        }
+        System.out.println(encode("map",2));
     }
 
 }
