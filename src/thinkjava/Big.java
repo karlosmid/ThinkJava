@@ -4,6 +4,7 @@
  */
 
 package thinkjava;
+import java.math.BigInteger;
 
 /**
  *
@@ -15,19 +16,23 @@ public class Big {
             System.out.format("%d\t%d\n",i,factorial(i));
         }
     }
-    public static long factorial(int n){
+    public static BigInteger factorial(int n){
         long fact = -1;
+        BigInteger bigFact = BigInteger.valueOf(fact);
+
         if (n < 0){
-            fact = -1;
+            bigFact = BigInteger.valueOf(-1);
         } else if (n == 0) {
-            fact = 1;
+            bigFact = BigInteger.valueOf(1);
         }else{
-            fact = 1;
+            bigFact = BigInteger.valueOf(1);
+            BigInteger small = BigInteger.valueOf(1);
             for (int i =1;i<=n;i++){
-                fact = fact * i;
+                small = BigInteger.valueOf(i);
+                bigFact = bigFact.multiply(small);
             }
         }
-        return fact;
+        return bigFact;
     }
     public static void main(String[] args){
 //        System.out.println(factorial(5));
