@@ -4,13 +4,65 @@
  */
 
 package thinkjava;
-import java.lang.Math;
 
 /**
  *
  * @author karlo
  */
 public class Randoms {
+    public static void testArrayHist(){
+        int [] numbers = {-100,-1,0,123,234,10,1,2,3,4,5,6,7,8,9,9};
+        printArray(arrayHist(numbers));
+    }
+    public static int[] arrayHist(int [] numbers){
+        int [] counts = new int[11];
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] <= 0){
+                counts[0]++;
+            }
+            else if (numbers[i] >= 10){
+                counts[10]++;
+            }
+            else{
+               counts[numbers[i]]++;
+            }
+        }
+        return counts;
+    }
+    public static void testIndexOfTarget(){
+        int target = 101;
+        int [] numbers = {1,3,5,6,7,5};
+        System.out.println(indexOfTarget(target, numbers));
+    }
+    public static int indexOfTarget(int target, int[] numbers){
+       for (int i = 0; i < numbers.length; i++){
+            if (target == numbers[i]){
+                return i;
+            }
+        }
+        return -1; 
+    }
+    public static void testAreFactors(){
+        int number = 5;
+        int [] numbers = {1,3};
+        System.out.println(areFactors(number,numbers));
+    }
+    public static boolean areFactors(int n, int[] numbers){
+        for (int i = 0; i < numbers.length; i++){
+            if (!isDivisible(n,numbers[i])){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean isDivisible(int n,int m){
+        if (n%m == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public static void testScoreHist(){
         int numValues = 100;
         int [] scores = randomArray (numValues);
@@ -45,7 +97,7 @@ public class Randoms {
         }
     }
     public static void main(String[] args){
-        testScoreHist();
+        testArrayHist();
     }
     public static int sumScoreHist(int [] scoreHist){
         int sum = 0;
