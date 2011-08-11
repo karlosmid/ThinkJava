@@ -20,15 +20,9 @@ public class Range {
             return Math.max(arrayOfInt[lowIndex],arrayOfInt[highIndex]);
         }
         else{
-            int dividePoint = (highIndex+lowIndex)/2;            
-            int[] lowerArrayOfInt = new int[dividePoint - lowIndex];
-            int[] higherArrayOfInt = new int[highIndex - dividePoint + 1];
-            System.arraycopy
-                    (arrayOfInt,lowIndex,lowerArrayOfInt,0,dividePoint - lowIndex);
-            System.arraycopy
-                    (arrayOfInt,dividePoint,higherArrayOfInt,0,highIndex - dividePoint + 1);
-            int maxInLow = maxInRange(lowerArrayOfInt,0,lowerArrayOfInt.length - 1);
-            int maxInHigh = maxInRange(higherArrayOfInt,0,higherArrayOfInt.length - 1);
+            int dividePoint = (highIndex+lowIndex)/2;                        
+            int maxInLow = maxInRange(arrayOfInt,lowIndex,dividePoint);
+            int maxInHigh = maxInRange(arrayOfInt,dividePoint,highIndex);
             return Math.max(maxInLow,maxInHigh);
         }
     }

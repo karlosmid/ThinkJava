@@ -11,25 +11,28 @@ package thinkjava;
  */
 public class Find {    
     public static int findInArray(int[] arrayOfInt, int whatWeSearch){
-        if (arrayOfInt.length == 1){
-            if (arrayOfInt[0] == whatWeSearch){
-                return 0;
+        return findInArrayRange(arrayOfInt,whatWeSearch,0,arrayOfInt.length - 1);
+    }
+    public static int findInArrayRange(int[] arrayOfInt, int whatWeSearch, int lowIndex, int highIndex){
+        if (lowIndex == highIndex){
+            if (arrayOfInt[lowIndex] == whatWeSearch){
+                return lowIndex;
             }
             return -1;
         }
         else{
-            int dividePoint = arrayOfInt.length/2;
-            int[] lowerArrayOfInt = new int[dividePoint];
-            int[] higherArrayOfInt = new int[arrayOfInt.length - dividePoint];
-            System.arraycopy
-                    (arrayOfInt,dividePoint,higherArrayOfInt,0,
-                     arrayOfInt.length - dividePoint);
-            System.arraycopy
-                    (arrayOfInt,0,lowerArrayOfInt,0,dividePoint);            
-            int indexInLow = findInArray(lowerArrayOfInt,whatWeSearch);
-            int indexInHigh = findInArray(higherArrayOfInt,whatWeSearch);
+            int dividePoint = (highIndex - lowIndex)/2;
+//            int[] lowerArrayOfInt = new int[dividePoint];
+//            int[] higherArrayOfInt = new int[arrayOfInt.length - dividePoint];
+//            System.arraycopy
+//                    (arrayOfInt,dividePoint,higherArrayOfInt,0,
+//                     arrayOfInt.length - dividePoint);
+//            System.arraycopy
+//                    (arrayOfInt,0,lowerArrayOfInt,0,dividePoint);
+            int indexInLow = findInArrayRange(arrayOfInt,whatWeSearch, lowIndex, lowIndex + dividePoint);
+            int indexInHigh = findInArrayRange(arrayOfInt,whatWeSearch, lowIndex + dividePoint + 1, highIndex);
             if (indexInLow == -1 && indexInHigh != -1){
-                return indexInHigh + dividePoint;
+                return indexInHigh;
             }
             else if(indexInLow != -1 && indexInHigh == -1)
             {
