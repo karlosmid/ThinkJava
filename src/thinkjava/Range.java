@@ -9,6 +9,15 @@ package thinkjava;
  * @author karlo
  */
 public class Range {
+    public static boolean isDoubloon(String word){
+         int[] wordHist = letterHist(word);
+         for (int i = 0;i <= wordHist.length - 1;i++){
+             if (wordHist[i] !=2 && wordHist[i] != 0){
+                 return false;
+             }
+         }
+         return true;
+    }
     public static int[] letterHist(String letters){
         String lettersInLowerCase = letters.toLowerCase();        
         String englishAlphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -97,8 +106,8 @@ public class Range {
         }
     }
     public static void main(String[] args){
-        int[] a = {15,23,1,0,23,56,-1,101,456,23,12};
-        System.out.println(maxElemInCollectionRange(a,2,5));
+        String input = "Abba";
+        boolean result = Range.isDoubloon(input);
     }
 
 }

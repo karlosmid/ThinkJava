@@ -69,6 +69,14 @@ public class RangeTest extends TestCase{
             assertEquals(expected[i],a[i]);
         }
     }
+    public void testSortOneElement(){
+        int[] expected = {456};
+        int[] a = {456};
+        Range.sortElemCollection(a);
+        for (int i = 0 ; i<=a.length -1; i++){
+            assertEquals(expected[i],a[i]);
+        }
+    }
     public void testLetterHist(){
         String input = "Karlo Smid iz Zaboka";
                        //"a b c d e f g h i j k l m n o p q r s t u v w x y z"
@@ -77,6 +85,20 @@ public class RangeTest extends TestCase{
         for (int i = 0 ; i<=result.length -1; i++){            
             assertEquals(expected[i],result[i]);
         }
+    }
+    public void testIsDubloonIsTrue(){
+        String input = "Abba";
+        boolean expected = true;
+        boolean result = Range.isDoubloon(input);
+        assertEquals(expected,result);
+
+    }
+    public void testIsDubloonIsFalse(){
+        String input = "Abbaaaa";
+        boolean expected = false;
+        boolean result = Range.isDoubloon(input);
+        assertEquals(expected,result);
+
     }
     public static Test suite() { 
         TestSuite suite= new TestSuite(); 
@@ -87,7 +109,10 @@ public class RangeTest extends TestCase{
         suite.addTest(new RangeTest("testIndexMaxInRange02"));
         suite.addTest(new RangeTest("testIndexMaxInRange03"));
         suite.addTest(new RangeTest("testSort"));
+        suite.addTest(new RangeTest("testSortOneElement"));
         suite.addTest(new RangeTest("testLetterHist"));
+        suite.addTest(new RangeTest("testIsDubloonIsTrue"));
+        suite.addTest(new RangeTest("testIsDubloonIsFalse"));
         return suite;
 }
     public static void main(String[] args){
