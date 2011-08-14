@@ -69,6 +69,15 @@ public class RangeTest extends TestCase{
             assertEquals(expected[i],a[i]);
         }
     }
+    public void testLetterHist(){
+        String input = "Karlo Smid iz Zaboka";
+                       //"a b c d e f g h i j k l m n o p q r s t u v w x y z"
+        int[] expected = {3,1,0,1,0,0,0,0,2,0,2,1,1,0,2,0,0,1,1,0,0,0,0,0,0,2};
+        int[] result = Range.letterHist(input);
+        for (int i = 0 ; i<=result.length -1; i++){            
+            assertEquals(expected[i],result[i]);
+        }
+    }
     public static Test suite() { 
         TestSuite suite= new TestSuite(); 
         suite.addTest(new RangeTest("testMaxInRange01"));
@@ -78,6 +87,7 @@ public class RangeTest extends TestCase{
         suite.addTest(new RangeTest("testIndexMaxInRange02"));
         suite.addTest(new RangeTest("testIndexMaxInRange03"));
         suite.addTest(new RangeTest("testSort"));
+        suite.addTest(new RangeTest("testLetterHist"));
         return suite;
 }
     public static void main(String[] args){

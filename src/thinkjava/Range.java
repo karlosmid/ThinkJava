@@ -9,6 +9,19 @@ package thinkjava;
  * @author karlo
  */
 public class Range {
+    public static int[] letterHist(String letters){
+        String lettersInLowerCase = letters.toLowerCase();        
+        String englishAlphabet = "abcdefghijklmnopqrstuvwxyz";
+        int[] letterHist = new int[26];
+        for (int i = 0;i<=lettersInLowerCase.length() - 1;i++){
+            int indexOfHist = englishAlphabet.indexOf(lettersInLowerCase.charAt(i));
+            if ( indexOfHist != -1){
+                letterHist[indexOfHist]++;
+            }
+        }
+        return letterHist;
+        
+    }
     public static void sortElemCollection(int[] elementsCollection){
         for (int i = 0;i<= elementsCollection.length -1;i++){
             int maxIndex = indexOfMaxElemInRange(elementsCollection,i,

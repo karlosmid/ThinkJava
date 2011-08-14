@@ -22,21 +22,21 @@ public class FindTest extends TestCase{
     public void testFind01(){
         int expected = 1;
         int[] a = {15,23,1,0,23,56,-1,101,456,23,12};
-        int result = Find.findInArray(a,23);
+        int result = Find.findInElemCollection(a,23);
         assertEquals(expected,result);
 
     }
     public void testFind02(){
         int expected = 6;
         int[] a = {15,23,1,0,23,56,-1,101,456,23,12};
-        int result = Find.findInArray(a,-1);
+        int result = Find.findInElemCollection(a,-1);
         assertEquals(expected,result);
 
     }
     public void testFind03(){
         int expected = 10;
         int[] a = {15,23,1,0,23,56,-1,101,456,23,12};
-        int result = Find.findInArray(a,12);
+        int result = Find.findInElemCollection(a,12);
         assertEquals(expected,result);
 
     }
