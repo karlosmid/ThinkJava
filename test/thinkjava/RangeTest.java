@@ -100,6 +100,31 @@ public class RangeTest extends TestCase{
         assertEquals(expected,result);
 
     }
+    public void testTestWordTrue(){
+        String word = "jib";
+        String tiles = "qijibo";
+        assertEquals(true,Range.testWord(tiles, word, false));
+    }
+    public void testTestWordFalse(){
+        String word = "jibcw";
+        String tiles = "qijibo";
+        assertEquals(false,Range.testWord(tiles, word, false));
+    }
+    public void testTestWordWithStarsTrue(){
+        String word = "jib";
+        String tiles = "qiji*o";
+        assertEquals(true,Range.testWord(tiles, word, true));
+    }
+    public void testTestWordWithTwoStarsTrue(){
+        String word = "jibcw";
+        String tiles = "*qij*ibo";
+        assertEquals(true,Range.testWord(tiles, word, true));
+    }
+    public void testTestWordWithTwoStarsFalse(){
+        String word = "jibcwl";
+        String tiles = "*qij*ibo";
+        assertEquals(false,Range.testWord(tiles, word, true));
+    }
     public static Test suite() { 
         TestSuite suite= new TestSuite(); 
         suite.addTest(new RangeTest("testMaxInRange01"));
@@ -113,6 +138,11 @@ public class RangeTest extends TestCase{
         suite.addTest(new RangeTest("testLetterHist"));
         suite.addTest(new RangeTest("testIsDubloonIsTrue"));
         suite.addTest(new RangeTest("testIsDubloonIsFalse"));
+        suite.addTest(new RangeTest("testTestWordTrue"));
+        suite.addTest(new RangeTest("testTestWordFalse"));
+        suite.addTest(new RangeTest("testTestWordWithStarsTrue"));
+        suite.addTest(new RangeTest("testTestWordWithTwoStarsTrue"));
+        suite.addTest(new RangeTest("testTestWordWithTwoStarsFalse"));
         return suite;
 }
     public static void main(String[] args){

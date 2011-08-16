@@ -9,6 +9,31 @@ package thinkjava;
  * @author karlo
  */
 public class Range {
+    public static boolean testWord(String tiles,String word,boolean useStarsAsWildChars){
+        int[] tilesHist = letterHist(tiles);
+        int noOfStars = 0;
+        if (useStarsAsWildChars){
+            for (int i = 0;i <= tiles.length() -1;i++){
+                if (tiles.charAt(i) == '*'){
+                    noOfStars++;
+                }
+            }
+        }
+        String wordInLowerCase = word.toLowerCase();
+        String englishAlphabet = "abcdefghijklmnopqrstuvwxyz";
+         for (int i = 0;i <= wordInLowerCase.length() - 1;i++){
+             int indexOfHist = englishAlphabet.indexOf(wordInLowerCase.charAt(i));
+             if (tilesHist[indexOfHist] == 0){
+                 if(noOfStars == 0){
+                     return false;    
+                 }
+                 else{
+                     noOfStars--;
+                 }
+             }
+         }
+         return true;
+    }
     public static boolean isDoubloon(String word){
          int[] wordHist = letterHist(word);
          for (int i = 0;i <= wordHist.length - 1;i++){
