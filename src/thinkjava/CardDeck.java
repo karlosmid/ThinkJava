@@ -23,10 +23,12 @@ public class CardDeck {
             }
         }
     }
-    public void printDeck () {
+    public String[] printDeck () {
+        String[] stringDeck = new String[52];
         for (int i=0; i<this.deck.length; i++) {
-        deck[i].printCard();
+            stringDeck[i] = deck[i].printCard();
         }
+        return stringDeck;
     }
     public int findCardLinear (Card card) {
         for (int i = 0; i< this.deck.length; i++) {
@@ -47,6 +49,91 @@ public class CardDeck {
             return this.findCardBisect (card, mid+1, high);
         }
     }
+    public int handScore(Card[] hands){
+        int handCardValue = 0;
+        for (Card card : hands){
+            handCardValue = handCardValue + card.cardValue();
+        }
+        return handCardValue;
+    }
+    public Card parseCard(String card){
+        Card calculatedCard = new Card();
+        String[] parsedCard = card.split(" ");
+        if (parsedCard.length != 3){
+            return null;
+        }
+        if (!this.isThisOfString(parsedCard[1])){
+            return null;
+        }
+        try{
+            calculatedCard.rank = this.calculateRank(parsedCard[0]);
+        }
+        catch (Exception e){
+            return null;
+        }
+        try{
+            calculatedCard.suit = this.calculateSuite(parsedCard[2]);
+        }
+        catch (Exception e){
+            return null;
+        }
+
+        return calculatedCard;
+    }
+    public boolean isThisOfString(String input){
+        if (input.equalsIgnoreCase("of")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public int calculateRank(String input){
+        if (input.equalsIgnoreCase("Ace")){
+            return 1;
+        }
+        else if(input.equalsIgnoreCase("Jack"))
+        {
+            return 11;
+        }
+        else if(input.equalsIgnoreCase("Queen"))
+        {
+            return 12;
+        }
+        else if(input.equalsIgnoreCase("King"))
+        {
+            return 13;
+        }
+        else{
+            Integer rank = new Integer(input);
+            if (rank > 0 && rank < 11){
+                return rank;
+            }
+            else{
+                throw new NumberFormatException();
+            }
+        }
+    }
+    public int calculateSuite(String input){
+        if (input.equalsIgnoreCase("Clubs")){
+            return 0;
+        }
+        else if(input.equalsIgnoreCase("Diamonds"))
+        {
+            return 1;
+        }
+        else if(input.equalsIgnoreCase("Hearts"))
+        {
+            return 2;
+        }
+        else if(input.equalsIgnoreCase("Spades"))
+        {
+            return 3;
+        }
+        else{
+            throw new NumberFormatException();
+        }
+    }
 }
 class Card
 {
@@ -58,11 +145,12 @@ class Card
     public Card (int suit, int rank) {
         this.suit = suit; this.rank = rank;
     }
-    public void printCard (){
+    public String printCard (){
         String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
         String[] ranks = { "narf", "Ace", "2", "3", "4", "5", "6",
         "7", "8", "9", "10", "Jack", "Queen", "King" };
         System.out.println (ranks[this.rank] + " of " + suits[this.suit]);
+        return ranks[this.rank] + " of " + suits[this.suit];
 
     }
     public boolean shallowSameCard(Card c){
@@ -77,6 +165,14 @@ class Card
         if (c.rank > this.rank) return 1;
         if (c.rank < this.rank) return -1;
         return 0;
+    }
+    public int cardValue(){
+        if (this.rank > 9){
+            return 10;
+        }
+        else{
+            return this.rank;
+        }
     }
 
 }
