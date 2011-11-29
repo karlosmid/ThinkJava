@@ -5,12 +5,7 @@
 
 package thinkjava;
 import junit.framework.Assert.*;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
-import thinkjava.CardDeck;
-import thinkjava.Card;
 
 /**
  *
@@ -216,5 +211,40 @@ public class TestCardDeck extends TestCase{
             TestCardDeck.assertEquals(true,card.deepSameCard(expectedDeck[i]));
             i = i + 1;
         }
+    }
+    public void testSuiteHistogramClubsDiamondsHeartsSpades01(){
+        Card[] cards = {new Card(0,1),new Card(0,1),new Card(0,1),new Card(0,1),new Card(0,1),};
+        CardDeck cardDeck = new CardDeck();
+        int[] expectedSuiteHistogramClubsDiamondsHeartsSpades = {5,0,0,0};
+        int i = 0;
+        for(int histSuite : cardDeck.suiteHistogramClubsDiamondsHeartsSpades(cards)){
+            TestCardDeck.assertEquals(expectedSuiteHistogramClubsDiamondsHeartsSpades[i],
+                    histSuite);
+            i = i + 1;
+        }
+    }
+    public void testSuiteHistogramClubsDiamondsHeartsSpades02(){
+        Card[] cards = {new Card(0,1),new Card(1,1),new Card(1,2),new Card(1,11),new Card(2,1),
+        new Card(2,5)};
+        CardDeck cardDeck = new CardDeck();
+        int[] expectedSuiteHistogramClubsDiamondsHeartsSpades = {1,3,2,0};
+        int i = 0;
+        for(int histSuite : cardDeck.suiteHistogramClubsDiamondsHeartsSpades(cards)){
+            TestCardDeck.assertEquals(expectedSuiteHistogramClubsDiamondsHeartsSpades[i],
+                    histSuite);
+            i = i + 1;
+        }
+    }
+    public void testIsFlushTrue(){
+        Card[] cards = {new Card(0,1),new Card(0,1),new Card(0,2),new Card(0,11),new Card(0,1),
+        new Card(0,5)};
+        CardDeck cardDeck = new CardDeck();
+        TestCardDeck.assertEquals(true,cardDeck.isFlush(cards));            
+    }
+    public void testIsFlushFalse(){
+        Card[] cards = {new Card(0,1),new Card(1,1),new Card(2,2),new Card(1,11),new Card(0,1),
+        new Card(3,5)};
+        CardDeck cardDeck = new CardDeck();
+        TestCardDeck.assertEquals(false,cardDeck.isFlush(cards));
     }
 }
